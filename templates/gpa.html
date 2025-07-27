@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GPA Calculator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+     <div class="header-bg"></div>
+  <div class="container">
+    <h1>GPA Calculator</h1>
+    <form method="POST">
+      <label>Enter number of subjects:</label>
+      <input type="number" name="num_subjects" id="num_subjects" min="1" required oninput="generateInputs()">
+      
+      <div id="subjects"></div>
+
+      <button type="submit">Calculate GPA</button>
+    </form>
+  </div>
+
+  <script>
+    function generateInputs() {
+      let num = document.getElementById('num_subjects').value;
+      let container = document.getElementById('subjects');
+      container.innerHTML = "";
+
+      for (let i = 1; i <= num; i++) {
+        container.innerHTML += `
+          <h4>Subject ${i}</h4>
+          <label>Credits:</label>
+          <input type="number" name="credits${i}" step="0.1" required>
+          <label>Marks:</label>
+          <input type="text" name="marks${i}" placeholder="Enter grade like A+, B, RA...">
+<br><br>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>
